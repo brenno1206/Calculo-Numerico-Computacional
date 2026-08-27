@@ -50,4 +50,35 @@ std::vector<std::vector<double>> LSSolver::zerosMatriz(int rows, int cols) {
 std::vector<std::vector<double>>  LSSolver::coefMatrix() {
     int rows = augMat.size();
     int cols = augMat.at(0).size();
+
+    auto MC = LSSolver::zerosMatriz(rows, cols);
+
+    for(int i = 0; i < rows; i++) {
+        for(int j = 0; j < cols - 1; j++) {
+            MC[i][j] = this->augMat[i][j];
+        }
+    }
+
+    return MC;
+}
+
+void LSSolver::pivotCheckAndSwap(int rowIndex) {
+    auto rows = augMat.size();
+
+    if(augMat[rowIndex][rowIndex] == 0) {
+        for(int j{rowIndex+1}; j < rows; j++) {
+            if(augMat[j][rowIndex] != 0) {
+                auto aux = augMat[rowIndex];
+                augMat[rowIndex] = augMat[j];
+                augMat[j] = aux;
+                return;
+            }
+        }
+    }
+    // LANCAR ERRO ValueError
+    // Matriz singular! Nao eh possivel aplicar o metodo (pivo zero)
+}
+
+int gaussianElimination() {
+    
 }
