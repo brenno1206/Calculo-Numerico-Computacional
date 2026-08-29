@@ -3,10 +3,32 @@
 
 int main() {
     
-    LSSolver lss{{{2, 3, 4},
-        {1, 2, 3},
-        {4, 5, 6}}};
+    LSSolver lss{{{1, 1, 2, 9},
+        {2, 4, -3, 1},
+        {3, 6, -5, 0}}};
     lss.printMatrix();
+
+    std::cout << "\nAnalisando sistema linear\n";
+
+    std::cout << lss.validateSystem();
+
+    std::cout << "Matriz aumentada original:\n";
+    lss.printMatrix();
+
+    lss.gaussJordanElimination();
+
+    std::cout << "Matriz na forma reduzida:\n";
+    lss.printMatrix();
+    std::vector<double> solution;
+    for(auto row : lss.augMat) {
+        solution.push_back(row.back());
+    }
+    std::cout << "\n\n";
+
+    for(auto answer : solution) {
+        std::cout << std::format(" x^? ={:.4f} ", answer);
+    }
+    
     
     return 0;
 }

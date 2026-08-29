@@ -11,16 +11,17 @@
  */
 class LSSolver {
 private: 
-    std::vector<std::vector<double>> augMat;
+    
 
     /**
      * @brief Verifica se o pivo na linha 'rowIndex' eh zero.
      * Lanca um erro se a matriz for singular.
      * @param rowIndex (int)
      */
-    void pivotCheckAndSwap(int rowIndex);
+    bool pivotCheckAndSwap(int rowIndex);
     
 public:
+    std::vector<std::vector<double>> augMat;
     /**
      * @brief Construtor da classe LSSolver.
      * @param pAugMart (vetor de vetores)
